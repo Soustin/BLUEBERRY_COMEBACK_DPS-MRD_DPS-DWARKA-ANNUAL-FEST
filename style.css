@@ -1,0 +1,741 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+ul, li, ol {
+    list-style: none;
+    }
+
+    a {
+    text-decoration: none;
+}
+body, main{
+    margin: 0 auto;
+    font-family: 'Roboto', 'Helvetica', Arial, sans-serif;
+    background-color: #fbfbfd;
+    overflow-x: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.card {
+  margin: 0 3vw;
+  width: 25vw;
+  flex-shrink: 0;
+  padding: 2vw;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 3px;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.1);
+  
+  &-title {
+    transition: .3s;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    margin: 2vw 0 0;
+    font-size: 2.8vw;
+    opacity: 0;
+    transform: scale(.7);
+  }
+  
+  &:last-child:after {
+    content: "";
+    width: 6vw;
+    position: absolute;
+    height: 100%;
+    right: -6vw;
+    top: 0;
+  }
+
+  img {
+    max-width: 70%;
+    max-height: 50vh;
+    opacity: 0;
+    margin: auto;
+    display: block;
+    transition: .35s;
+    transform: rotate(6deg) translate(0, 40px) scaleY(.6);
+  }
+
+  &.isVisible {
+    img {
+      max-width: 100%;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .card-title {
+      opacity: 1;
+      transform: none;
+      transition-delay: .1s;
+    }
+  }
+  
+  &:first-child { margin-left: 6vw; }
+}
+
+
+/* css untuk header */
+header {
+    position: fixed;
+    top:0;
+    height: 52px;
+    width: 100%;
+    color: rgba(255, 253, 253, 0.87);
+    background-color: rgba(0,0,0,0.92);
+    z-index: 10;
+  }
+  
+.container-cart {
+    position: absolute;
+    top: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1240px;
+    width: 100vw;
+  }
+  
+  .cart {
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 4px;
+    padding-bottom: 10px;
+    z-index: 11;
+  }
+  
+  .sacola-active {
+    display: flex;
+  }
+  
+  .cart-icon {
+    position: absolute;
+    max-width: 100%;
+    width: 12px;
+    height: 10px;
+    left: 3px;
+    bottom: -9px;
+    display: block;
+    z-index: 10;
+  }
+  
+  .cart-icon span {
+    width: 10px;
+    height: 10px;
+    display: none;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid rgba(128, 128, 128, 0.315);
+    border-top: 1px solid rgba(128, 128, 128, 0.315);
+  }
+  
+  /* .seta-active span {
+    display: block;
+  } */
+  
+  .svg-cart {
+    position: relative;
+  }
+  
+  .svg-cart:hover {
+    cursor: pointer;
+  }
+  
+  .content-cart {
+    width: 286px;
+    background-color: white;
+    border: 1px solid rgba(128, 128, 128, 0.315);
+    margin-top: 4px;
+    border-radius: 18px;
+  }
+  
+  .content-cart p {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 0;
+    padding-top: 33px;
+    padding-bottom: 20px;
+    font-size: 14px;
+    color: rgb(126, 126, 126);
+  }
+  
+  .links-cart {
+    width: 100%;
+  }
+  
+  .links-cart ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 8%;
+    padding-bottom: 10px;
+  }
+  
+  .links-cart li a {
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    color: #0066cc;
+    font-size: 14px;
+    padding-left: 30px;
+    border-top: 1px solid rgb(214, 214, 214);
+    line-height: 3.2em;
+  }
+  
+  .links-cart li:nth-child(1) {
+    background-image: url(https://www.apple.com/ac/globalnav/7/pt_BR/assets/ac-store/bag.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 45px;
+  }
+  
+  .links-cart li:nth-child(2) {
+    background-image: url(https://www.apple.com/ac/globalnav/7/pt_BR/assets/ac-store/savedbyyou.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 45px;
+  }
+  
+  .links-cart li:nth-child(3) {
+    background-image: url(https://www.apple.com/ac/globalnav/7/pt_BR/assets/ac-store/orders.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 45px;
+  }
+  
+  .links-cart li:nth-child(4) {
+    background-image: url(https://www.apple.com/ac/globalnav/7/pt_BR/assets/ac-store/account.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 45px;
+  }
+  
+  .links-cart li:nth-child(5) {
+    background-image: url(https://www.apple.com/ac/globalnav/7/pt_BR/assets/ac-store/signIn.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 45px;
+  }
+  
+  .remove-cart {
+    display: none;
+  }
+  
+/* hide scrollbar */
+::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+  }
+  
+  ::-webkit-scrollbar-button {
+    width: 1px;
+    height: 1px;
+  }
+  .external {
+    overflow: hidden;
+    height: 100vh;
+  }
+  
+  .horizontal-scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vh;
+    transform: rotate(-90deg) translate3d(0,-100vh,0);
+    transform-origin: right top;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    height: 100vw;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    padding-bottom: 10rem;
+  }
+  .img-wrapper {
+    transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    transform-origin: 50% 50%;
+    transform: rotate(90deg) translateZ(.1px) scale(0.9) translateX(0px) translateY(-3vh);
+    transition: 1s;
+  }
+  
+  .img-wrapper:hover {
+   min-height: 65vh;
+  }
+  
+  .slower {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(0%) translateY(-10vh);
+  }
+  .slower1 {
+    transform: rotate(90deg) translateZ(-.25px) scale(1.05) translateX(0%) translateY(8vh);
+  }
+  .slower2 {
+    transform: rotate(90deg) translateZ(-.3px) scale(1.3) translateX(0%) translateY(2vh);
+  }
+  .slower-down {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(0%) translateY(16vh) ;
+  }
+  .faster {
+    transform: rotate(90deg) translateZ(.15px) scale(0.8) translateX(0%) translateY(14vh) ;
+  }
+  .faster1 {
+    transform: rotate(90deg) translateZ(.05px) scale(0.8) translateX(0%) translateY(10vh) ;
+  }
+  .fastest {
+    transform: rotate(90deg) translateZ(.22px) scale(0.7) translateX(-10vh) translateY(-15vh) ;
+  }
+  .vertical {
+     transform: rotate(90deg) translateZ(-.15px) scale(1.15) translateX(0%) translateY(0%) ;
+  }
+  .last {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(25vh) translateY(-8vh) ;
+  }
+  .scroll-info {
+    position: absolute;
+    left: 1rem;
+  }
+  
+  header {
+    bottom: 1rem;
+  }
+  
+.img-wrapper a {
+    overflow: hidden;
+    display: block;
+    padding: 1vh ;
+    background: #efecdb;
+    box-shadow: 0 10px 50px #5f2f1182;
+  }
+  .horizontal-card-scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vh;
+    transform: rotate(-90deg) translate3d(0,-100vh,0);
+    transform-origin: right top;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 4rem;
+    margin-top: 40rem;
+    /* padding-right: 35rem; */
+    height: 100vw;
+    perspective: 1px;
+    /* transform-style: preserve-3d; */
+    padding-bottom: 10rem;
+  }
+  .card {
+    transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    transform-origin: 50% 50%;
+    transform: rotate(90deg) translateZ(.1px) scale(0.9) translateX(0px) translateY(-3vh);
+    transition: 1s;
+  }
+  
+  .card:hover {
+   min-height: 65vh;
+  }
+  
+  .slower {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(0%) translateY(-10vh);
+  }
+  .slower1 {
+    transform: rotate(90deg) translateZ(-.25px) scale(1.05) translateX(0%) translateY(8vh);
+  }
+  .slower2 {
+    transform: rotate(90deg) translateZ(-.3px) scale(1.3) translateX(0%) translateY(2vh);
+  }
+  .slower-down {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(0%) translateY(16vh) ;
+  }
+  .faster {
+    transform: rotate(90deg) translateZ(.15px) scale(0.8) translateX(0%) translateY(14vh) ;
+  }
+  .faster1 {
+    transform: rotate(90deg) translateZ(.05px) scale(0.8) translateX(0%) translateY(10vh) ;
+  }
+  .fastest {
+    transform: rotate(90deg) translateZ(.22px) scale(0.7) translateX(-10vh) translateY(-15vh) ;
+  }
+  .vertical {
+     transform: rotate(90deg) translateZ(-.15px) scale(1.15) translateX(0%) translateY(0%) ;
+  }
+  .last {
+    transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(25vh) translateY(-8vh) ;
+  }
+  /* .card {
+    position: absolute;
+    left: 1rem;
+  } */
+
+  
+  .galimg:hover img {
+    filter: none;
+  }
+  
+  header {
+    bottom: 1rem;
+  }
+  
+/* .card a {
+    overflow: hidden;
+    display: block;
+    padding: 1vh ;
+    background: #efecdb;
+    box-shadow: 0 10px 50px #5f2f1182;
+  } */
+  
+  img {
+    max-width: 45vh;
+    max-height: 50vh;
+    transition: .5s;
+    vertical-align: top;
+    filter: saturate(40%) sepia(30%) hue-rotate(5deg);
+  }
+
+
+.header-wrapper {
+
+    /* text-align: center;
+    line-height: 50px;
+    font-size: 30px; */
+  }
+
+.header-list{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 0;
+    /* margin-left:50px; */
+    
+
+}
+.header-list li{
+    margin: 0;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+}
+.header-list li a{
+    text-decoration: none;
+    color: #f5f5f7;
+}
+.header-list a {
+    
+  /* margin-left:50px; 
+  font-size:20px;
+  margin-bottom:10px;   
+  line-height: 65px;
+  padding: 0 25px;
+  color: white;
+  display: block;
+  float: left;
+  transition: all 0.5s;  */
+
+}
+.logo{
+    width: 25px;
+    /* width: 30px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    float:left;
+    margin-left:30px; */
+}
+span{
+    /* margin-left:20px;
+    float:left; */
+}
+
+
+.search{
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:30px;
+    float:right;
+    background-color: rgba(0,0,0,0.92);
+    border-radius:10px;
+}
+/* header */
+
+
+/* container global - disabled */
+
+/* .container {
+    margin: 0 20px;
+  }
+*/
+
+.contents {
+    background-color: white;
+}
+
+
+.image-container .iphone-12 {
+    height: 640px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.iphone-12 {
+    height: 100%;
+    background-image: url(img/iphone_12.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;   
+    }
+
+.iphone-12 .title {
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+.iphone-12 .title h1 {
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.897);
+    font-weight: 700;
+}
+.iphone-12 .title p {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgba(41, 41, 41, 0.89)
+}
+
+ .cta-links {
+    text-align: center;
+}
+
+.image-container .iphone-12-pro {
+    height: 640px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.iphone-12-pro {
+    height: 90%;
+    min-height: 100%;
+    background-image: url(img/iphone12pro-background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.iphone-12-pro .title {
+    text-align: center;
+}
+
+.iphone-12-pro .title h1 {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.897);
+    font-weight: 700;
+}
+
+.iphone-12-pro .title p {
+    font-size: 30px;
+    font-weight: normal;
+    color: rgba(255, 253, 253, 0.87)
+}
+
+.iphone-12-pro .cta-links {
+    text-align: center;
+}
+.image-container .fitness {
+    height: 500px;
+    width: 100%;
+    padding-top: 0%;
+    flex: auto;
+    
+}
+
+.fitness {
+    height: 90%;
+    min-height: 100%;
+    background-image: url(img/apple-fitness.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 00px;
+}
+
+.title .hello {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 80px;
+    color: rgba(0, 0, 0, 0.897);
+    font-weight: 700;
+}
+
+
+
+ .title .A {
+     text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    margin-top: 30px;
+    color: rgba(0, 0, 0, 0.87)
+    
+}
+
+.fitness .cta-links {
+    text-align: center;
+}
+
+/* main */
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+  }
+  li {
+    color: white;
+    height: 770px;
+  }
+  ul li{
+      margin-bottom: 5px;
+  }
+
+  .flex-list{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .flex-list li{
+      flex: auto;
+      width: 50%;
+  }
+  .img{
+      margin: 0 auto;
+      width: 100%;
+  }
+  .headline{
+      margin-top: 0;
+      margin-bottom: 10px;
+  }
+  .content{
+      overflow: hidden;
+  }
+  /* main themes content */
+  .theme-dark{
+    background-color: #000;
+    margin: 0 auto;
+  }
+  .theme-light{
+    background-color: #fbfbfd;
+    margin: 0 auto;
+    color: #1D1D1F;
+  }
+  .container-main{
+    width: 98%;
+    height: 100%;
+  }
+
+  ul li img{
+      width: 100%;
+  }
+
+  .cta-links a{
+      font-size: 23px;
+      margin-right: 20px;
+      text-decoration: none;
+      color: #2997FF;
+      font-weight: normal;
+  }
+  .cta-links a:hover{
+      text-decoration: underline;
+  }
+  
+  /* hover zoom products animation */
+  .unit-image figure img{
+      transition: transform .2s;
+  }
+  .unit-image figure img:hover{
+      transform: scale(1.05);
+  }
+  .apple-watch-logo{
+    width: 25%;
+}
+/* main */
+
+
+  /* css untuk footer */
+
+  footer {
+      background-color: #f5f5f7;
+      padding: 40px;
+      height: 1000px;
+      color: #1d1d1f;
+  }
+
+  .logo-footer {
+      width: 50px;
+      margin-bottom: 10px;
+  }
+
+  .txt-copy {
+      margin: 0;
+  }
+
+  .txt-copy a {
+      color: #fff;
+  }
+
+  .txt-copy a:hover {
+      text-decoration: underline;
+  }
+  .footer-container{
+      display: flex;
+  }
+  .footer-list {
+      float: left;
+      width: 30%;
+      margin: 0 auto;
+      
+  }
+
+  .footer-list p a {
+      color: #1d1d1f;
+  }
+
+  .footer-list p a:hover {
+      text-decoration: underline;
+  }
+
+  .clear-footer {
+      clear: left;
+  }
+  .foot-notes ul li{
+      color: #86868b;
+      height: 2em;
+      margin: 10px 0;
+      text-align: left;
+  }
+  .footer-container, .footer-list-container{
+      width: 70%;
+      margin: 0 auto;
+  }
+/* footer */
+
+/* responsive */
+.menu-logo{
+    visibility: hidden;
+    position: absolute;
+}
+.fa-searchs{
+    visibility: hidden;
+}
