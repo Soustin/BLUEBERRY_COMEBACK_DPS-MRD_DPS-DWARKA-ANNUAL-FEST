@@ -1,5 +1,5 @@
 ## 🍎— Responsive Apple Website Clone using only HTML & CSS - Progate New Year Bootcamp 2021 Team project.
-![](Readme/client-side.JPG)
+![](Readme////c/l/ient-side.JPG)
 Apple Website Clone using only HTML & CSS - Progate New year 2021 Bootcamp Project Team.
 Progate New Year Bootcamp 2021 Team project. We managed to finish the project in 3 days, i'm satisfied to see all of the members doing their job really well
 
